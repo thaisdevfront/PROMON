@@ -1,0 +1,322 @@
+```html
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>PROMON | Site em Desenvolvimento</title>
+
+    <meta name="description" content="Bem-vindo à PROMON. Nosso novo site está em desenvolvimento.">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --orange: #ff6b00;
+            --orange-light: #ff8a2a;
+            --orange-dark: #d94f00;
+            --bg: #0d0d0d;
+            --text: #ffffff;
+            --muted: rgba(255,255,255,0.62);
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: Arial, Helvetica, sans-serif;
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+
+            background:
+                radial-gradient(
+                    circle at 50% 45%,
+                    rgba(255,107,0,0.16),
+                    transparent 30%
+                ),
+                radial-gradient(
+                    circle at 10% 10%,
+                    rgba(255,107,0,0.10),
+                    transparent 25%
+                ),
+                #0d0d0d;
+        }
+
+        /* Círculos decorativos */
+        body::before {
+            content: "";
+            position: fixed;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            border: 1px solid rgba(255,107,0,0.12);
+            top: -280px;
+            left: -220px;
+        }
+
+        body::after {
+            content: "";
+            position: fixed;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            border: 1px solid rgba(255,107,0,0.08);
+            right: -350px;
+            bottom: -350px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 950px;
+            padding: 40px 25px;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* LOGO */
+        .logo {
+            font-size: clamp(44px, 8vw, 82px);
+            font-weight: 800;
+            letter-spacing: 9px;
+            color: #fff;
+            margin-bottom: 24px;
+            animation: fadeDown 1s ease forwards;
+        }
+
+        .logo::first-letter {
+            color: var(--orange);
+        }
+
+        .line {
+            width: 80px;
+            height: 4px;
+            margin: 0 auto 35px;
+            border-radius: 20px;
+
+            background: linear-gradient(
+                90deg,
+                var(--orange-dark),
+                var(--orange-light)
+            );
+
+            box-shadow: 0 0 20px rgba(255,107,0,0.35);
+
+            animation: expand 1s ease forwards;
+        }
+
+        /* WELCOME */
+        .welcome {
+            color: var(--orange-light);
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+
+            animation: fadeUp 1s ease 0.2s both;
+        }
+
+        /* TÍTULO */
+        h1 {
+            font-size: clamp(34px, 6vw, 62px);
+            line-height: 1.08;
+            margin-bottom: 25px;
+            font-weight: 700;
+
+            animation: fadeUp 1s ease 0.4s both;
+        }
+
+        h1 span {
+            color: var(--orange);
+            font-weight: 300;
+        }
+
+        /* DESCRIÇÃO */
+        .description {
+            max-width: 650px;
+            margin: 0 auto;
+
+            font-size: 17px;
+            line-height: 1.8;
+            color: var(--muted);
+
+            animation: fadeUp 1s ease 0.6s both;
+        }
+
+        /* STATUS */
+        .status {
+            display: inline-flex;
+            align-items: center;
+            gap: 11px;
+
+            margin-top: 40px;
+            padding: 13px 22px;
+
+            border: 1px solid rgba(255,107,0,0.25);
+            border-radius: 50px;
+
+            background: rgba(255,107,0,0.06);
+
+            color: rgba(255,255,255,0.78);
+            font-size: 13px;
+
+            animation: fadeUp 1s ease 0.8s both;
+        }
+
+        .status-dot {
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+
+            background: var(--orange);
+
+            box-shadow:
+                0 0 8px var(--orange),
+                0 0 18px rgba(255,107,0,0.5);
+
+            animation: pulse 2s infinite;
+        }
+
+        /* FOOTER */
+        .footer {
+            margin-top: 65px;
+
+            font-size: 12px;
+            letter-spacing: 1px;
+
+            color: rgba(255,255,255,0.32);
+
+            animation: fadeUp 1s ease 1s both;
+        }
+
+        .footer span {
+            color: rgba(255,107,0,0.7);
+        }
+
+        /* ANIMAÇÕES */
+        @keyframes fadeDown {
+            from {
+                opacity: 0;
+                transform: translateY(-25px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(25px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes expand {
+            from {
+                width: 0;
+                opacity: 0;
+            }
+
+            to {
+                width: 80px;
+                opacity: 1;
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+
+            50% {
+                transform: scale(1.35);
+                opacity: 0.6;
+            }
+        }
+
+        /* MOBILE */
+        @media (max-width: 600px) {
+
+            .container {
+                padding: 30px 22px;
+            }
+
+            .logo {
+                letter-spacing: 5px;
+            }
+
+            .welcome {
+                font-size: 11px;
+                letter-spacing: 3px;
+            }
+
+            .description {
+                font-size: 15px;
+                line-height: 1.7;
+            }
+
+            .status {
+                margin-top: 30px;
+            }
+
+            .footer {
+                margin-top: 45px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <main class="container">
+
+        <div class="logo">
+            PROMON
+        </div>
+
+        <div class="line"></div>
+
+        <div class="welcome">
+            Seja bem-vindo
+        </div>
+
+        <h1>
+            Estamos preparando<br>
+            <span>algo incrível para você.</span>
+        </h1>
+
+        <p class="description">
+            Nosso novo site está em desenvolvimento.
+            Em breve, você poderá conhecer melhor a PROMON,
+            nossos projetos, soluções e tudo o que temos para oferecer.
+        </p>
+
+        <div class="status">
+            <span class="status-dot"></span>
+            Site em desenvolvimento
+        </div>
+
+        <div class="footer">
+            © 2026 <span>PROMON</span> — Todos os direitos reservados.
+        </div>
+
+    </main>
+
+</body>
+</html>
+```
