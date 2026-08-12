@@ -1,321 +1,159 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>PROMON | Site em Desenvolvimento</title>
-
-    <meta name="description" content="Bem-vindo à PROMON. Nosso novo site está em desenvolvimento.">
-
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --orange: #ff6b00;
-            --orange-light: #ff8a2a;
-            --orange-dark: #d94f00;
-            --bg: #0d0d0d;
-            --text: #ffffff;
-            --muted: rgba(255,255,255,0.62);
-        }
-
-        body {
-            min-height: 100vh;
-            font-family: Arial, Helvetica, sans-serif;
-            color: var(--text);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-
-            background:
-                radial-gradient(
-                    circle at 50% 45%,
-                    rgba(255,107,0,0.16),
-                    transparent 30%
-                ),
-                radial-gradient(
-                    circle at 10% 10%,
-                    rgba(255,107,0,0.10),
-                    transparent 25%
-                ),
-                #0d0d0d;
-        }
-
-        /* Círculos decorativos */
-        body::before {
-            content: "";
-            position: fixed;
-            width: 500px;
-            height: 500px;
-            border-radius: 50%;
-            border: 1px solid rgba(255,107,0,0.12);
-            top: -280px;
-            left: -220px;
-        }
-
-        body::after {
-            content: "";
-            position: fixed;
-            width: 600px;
-            height: 600px;
-            border-radius: 50%;
-            border: 1px solid rgba(255,107,0,0.08);
-            right: -350px;
-            bottom: -350px;
-        }
-
-        .container {
-            width: 100%;
-            max-width: 950px;
-            padding: 40px 25px;
-            text-align: center;
-            position: relative;
-            z-index: 2;
-        }
-
-        /* LOGO */
-        .logo {
-            font-size: clamp(44px, 8vw, 82px);
-            font-weight: 800;
-            letter-spacing: 9px;
-            color: #fff;
-            margin-bottom: 24px;
-            animation: fadeDown 1s ease forwards;
-        }
-
-        .logo::first-letter {
-            color: var(--orange);
-        }
-
-        .line {
-            width: 80px;
-            height: 4px;
-            margin: 0 auto 35px;
-            border-radius: 20px;
-
-            background: linear-gradient(
-                90deg,
-                var(--orange-dark),
-                var(--orange-light)
-            );
-
-            box-shadow: 0 0 20px rgba(255,107,0,0.35);
-
-            animation: expand 1s ease forwards;
-        }
-
-        /* WELCOME */
-        .welcome {
-            color: var(--orange-light);
-            font-size: 14px;
-            font-weight: 600;
-            letter-spacing: 5px;
-            text-transform: uppercase;
-            margin-bottom: 20px;
-
-            animation: fadeUp 1s ease 0.2s both;
-        }
-
-        /* TÍTULO */
-        h1 {
-            font-size: clamp(34px, 6vw, 62px);
-            line-height: 1.08;
-            margin-bottom: 25px;
-            font-weight: 700;
-
-            animation: fadeUp 1s ease 0.4s both;
-        }
-
-        h1 span {
-            color: var(--orange);
-            font-weight: 300;
-        }
-
-        /* DESCRIÇÃO */
-        .description {
-            max-width: 650px;
-            margin: 0 auto;
-
-            font-size: 17px;
-            line-height: 1.8;
-            color: var(--muted);
-
-            animation: fadeUp 1s ease 0.6s both;
-        }
-
-        /* STATUS */
-        .status {
-            display: inline-flex;
-            align-items: center;
-            gap: 11px;
-
-            margin-top: 40px;
-            padding: 13px 22px;
-
-            border: 1px solid rgba(255,107,0,0.25);
-            border-radius: 50px;
-
-            background: rgba(255,107,0,0.06);
-
-            color: rgba(255,255,255,0.78);
-            font-size: 13px;
-
-            animation: fadeUp 1s ease 0.8s both;
-        }
-
-        .status-dot {
-            width: 9px;
-            height: 9px;
-            border-radius: 50%;
-
-            background: var(--orange);
-
-            box-shadow:
-                0 0 8px var(--orange),
-                0 0 18px rgba(255,107,0,0.5);
-
-            animation: pulse 2s infinite;
-        }
-
-        /* FOOTER */
-        .footer {
-            margin-top: 65px;
-
-            font-size: 12px;
-            letter-spacing: 1px;
-
-            color: rgba(255,255,255,0.32);
-
-            animation: fadeUp 1s ease 1s both;
-        }
-
-        .footer span {
-            color: rgba(255,107,0,0.7);
-        }
-
-        /* ANIMAÇÕES */
-        @keyframes fadeDown {
-            from {
-                opacity: 0;
-                transform: translateY(-25px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes fadeUp {
-            from {
-                opacity: 0;
-                transform: translateY(25px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes expand {
-            from {
-                width: 0;
-                opacity: 0;
-            }
-
-            to {
-                width: 80px;
-                opacity: 1;
-            }
-        }
-
-        @keyframes pulse {
-            0%, 100% {
-                transform: scale(1);
-                opacity: 1;
-            }
-
-            50% {
-                transform: scale(1.35);
-                opacity: 0.6;
-            }
-        }
-
-        /* MOBILE */
-        @media (max-width: 600px) {
-
-            .container {
-                padding: 30px 22px;
-            }
-
-            .logo {
-                letter-spacing: 5px;
-            }
-
-            .welcome {
-                font-size: 11px;
-                letter-spacing: 3px;
-            }
-
-            .description {
-                font-size: 15px;
-                line-height: 1.7;
-            }
-
-            .status {
-                margin-top: 30px;
-            }
-
-            .footer {
-                margin-top: 45px;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Relatório Anual 2026 — Promon S.A.">
+  <title>Relatório Anual 2026 | Promon</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;500;600;700&family=Barlow:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
 </head>
-
 <body>
 
-    <main class="container">
+<header class="topbar">
+  <a class="brand" href="#" aria-label="Promon">
+    <span>PROMON</span><b>®</b>
+  </a>
+  <nav class="nav">
+    <a href="#relatorio">Relatório Anual 2026 completo</a>
+    <a href="#destaques">Demonstrações Financeiras 2026</a>
+    <span class="pill">PT</span>
+  </nav>
+  <button class="menu-toggle" aria-label="Abrir menu"><span></span><span></span><span></span></button>
+</header>
 
-        <div class="logo">
-            PROMON
-        </div>
+<main id="relatorio">
 
-        <div class="line"></div>
+  <section class="hero">
+    <div class="hero-gray hero-gray-1"></div>
+    <div class="hero-gray hero-gray-2"></div>
+    <div class="hero-copy">
+      <h1>Relatório<br>Anual 2026</h1>
+    </div>
+    <div class="hero-photo" role="img" aria-label="Imagem urbana de infraestrutura">
+      <div class="city-lines"></div>
+      <div class="hero-slash slash-a"></div>
+      <div class="hero-slash slash-b"></div>
+      <div class="hero-slash slash-c"></div>
+    </div>
+    <div class="hero-bottom"></div>
+  </section>
 
-        <div class="welcome">
-            Seja bem-vindo
-        </div>
+  <section class="about">
+    <div class="about-orange"></div>
+    <div class="person person-about">
+      <div class="person-head"></div>
+      <div class="person-body"></div>
+      <div class="helmet">promon</div>
+    </div>
+    <div class="about-copy">
+      <h2>A PROMON S.A.</h2>
+      <p>A Promon S.A. é a holding empresarial que atua em engenharia e tecnologia, na definição de diretrizes estratégicas, na governança corporativa e na sustentabilidade das companhias que integram seu portfólio.</p>
+      <p>Por meio dessa estrutura, mantém o alinhamento e a integração entre as diferentes negócios.</p>
+    </div>
+  </section>
 
-        <h1>
-            Estamos preparando<br>
-            <span>algo incrível para você.</span>
-        </h1>
+  <section class="investments">
+    <h2>A PROMON S.A. E SUAS EMPRESAS INVESTIDAS</h2>
+    <div class="org-chart">
+      <div class="org-node top">ACIONISTAS</div>
+      <div class="org-node promon">PROMON<span>®</span></div>
+      <div class="org-node fpps">Fundação<br>Promon FPPS</div>
+      <div class="org-node phl">PHL<br>Investments</div>
+      <div class="org-node company c1">promon<br><small>engenharia</small></div>
+      <div class="org-node company c2">forzy</div>
+      <div class="org-node company c3">PETI Educação e<br>Treinamento</div>
+      <div class="org-node company c4">LOGICALIS<br><small>Latin America</small></div>
+      <div class="share s1">50%</div><div class="share s2">100%</div><div class="share s3">31,5%</div>
+      <i class="line l1"></i><i class="line l2"></i><i class="line l3"></i><i class="line l4"></i>
+    </div>
+  </section>
 
-        <p class="description">
-            Nosso novo site está em desenvolvimento.
-            Em breve, você poderá conhecer melhor a PROMON,
-            nossos projetos, soluções e tudo o que temos para oferecer.
-        </p>
+  <section class="highlights" id="destaques">
+    <div class="section-heading">
+      <h2>DESTAQUES DE 2026</h2>
+      <p>Veja os principais resultados e destaques das empresas da Promon S.A. no ano de 2026.</p>
+    </div>
 
-        <div class="status">
-            <span class="status-dot"></span>
-            Site em desenvolvimento
-        </div>
+    <div class="cards-grid">
+      <div class="card-column">
+        <article class="metric-card orange">
+          <h3>Promon S.A.</h3>
+          <div class="metric">◉ <strong>R$ 1,1 bilhão</strong><small>de receita bruta anual</small></div>
+          <div class="metric">◎ <strong>3.184 profissionais</strong><small>incluindo as pessoas da Promon S.A., Promon Engenharia, Forzy e Logicalis</small></div>
+        </article>
 
-        <div class="footer">
-            © 2026 <span>PROMON</span> — Todos os direitos reservados.
-        </div>
+        <article class="metric-card yellow">
+          <h3>Forzy</h3>
+          <div class="metric">◉ <strong>R$ 12,7 milhões</strong><small>em receitas, crescimento de aproximadamente 19,5% em comparação com 2025</small></div>
+          <div class="metric">◎ <strong>R$ 11,8 milhões</strong><small>em receita líquida</small></div>
+          <div class="metric">◉ <strong>Seu segundo ano de atuação foi marcado pela estruturação e início da aceleração...</strong></div>
+        </article>
 
-    </main>
+        <article class="metric-card green">
+          <h3>Fundação Promon de Previdência Social (FPPS)</h3>
+          <div class="metric">◉ <strong>R$ 2,0 bilhões</strong><small>em investimentos totais nos dois planos previdenciários</small></div>
+          <div class="metric">◎ <strong>R$ 21,5 milhões</strong><small>em contribuições recebidas</small></div>
+          <div class="metric">◉ <strong>R$ 127,7 milhões</strong><small>em benefícios de prestação continuada pagos</small></div>
+          <div class="metric">◎ <strong>1.279 participantes</strong><small>entre ativos e autopatrocinados</small></div>
+        </article>
+      </div>
 
+      <div class="card-column right">
+        <article class="metric-card navy">
+          <h3>Promon Engenharia</h3>
+          <div class="metric">◉ <strong>R$ 272 milhões</strong><small>em vendas, segundo melhor resultado em 10 anos</small></div>
+          <div class="metric">◎ <strong>R$ 201 milhões</strong><small>em receita bruta</small></div>
+          <div class="metric">◉ <strong>Reconstrução da abordagem no mercado...</strong></div>
+          <div class="metric">◎ <strong>Aumento do NPS</strong> em relação a 2025</div>
+        </article>
+
+        <article class="metric-card blue">
+          <h3>Logicalis Latin America</h3>
+          <div class="metric">◉ <strong>R$ 2,5 bilhões</strong><small>em vendas</small></div>
+          <div class="metric">◎ <strong>R$ 2,8 bilhões</strong><small>em receita bruta</small></div>
+          <div class="metric">◉ <strong>Avanço na estratégia de transformação do negócio...</strong></div>
+          <div class="metric">◎ <strong>Fortalecimento de parcerias estratégicas</strong></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="esg">
+    <div class="section-heading">
+      <h2>ESG NA PROMON EM 2026</h2>
+      <p>Conheça as práticas e iniciativas ambientais, sociais e de governança das empresas da Promon S.A. no ano social.</p>
+    </div>
+
+    <article class="esg-band orange-band">
+      <div class="band-copy"><h3>Promon S.A.</h3><ul><li>Promoção de ações de diversidade no ambiente corporativo.</li><li>Fortalecimento de práticas ambientais e sociais.</li><li>Gestão responsável e compromisso com a sustentabilidade.</li><li>Avanços em indicadores ESG.</li></ul></div>
+      <div class="image-placeholder photo-woman" aria-label="Imagem ilustrativa"></div>
+    </article>
+
+    <article class="esg-band dark-band">
+      <div class="image-placeholder photo-team" aria-label="Imagem ilustrativa"></div>
+      <div class="band-copy"><h3>Promon Engenharia</h3><ul><li>Investimentos ESG e desenvolvimento do inventário de emissões.</li><li>Incorporação de critérios ambientais e sociais.</li><li>Capacitação das equipes e fortalecimento da cultura.</li></ul></div>
+    </article>
+
+    <article class="esg-band yellow-band">
+      <div class="band-copy"><h3>Forzy</h3><ul><li>Avanços na digitalização de ativos e melhoria da gestão operacional.</li><li>Iniciativas para redução de impactos ambientais.</li><li>Uso de tecnologia para ampliar eficiência.</li></ul></div>
+      <div class="image-placeholder photo-worker" aria-label="Imagem ilustrativa"></div>
+    </article>
+
+    <article class="esg-band blue-band">
+      <div class="image-placeholder photo-business" aria-label="Imagem ilustrativa"></div>
+      <div class="band-copy"><h3>Logicalis Latin America</h3><ul><li>Avanços em práticas de inovação e sustentabilidade.</li><li>Expansão de iniciativas de diversidade e inclusão.</li><li>Compromisso com uma transformação digital responsável.</li></ul></div>
+    </article>
+  </section>
+
+  <section class="cta">
+    <h2>SAIBA MAIS SOBRE A PROMON S.A. E SUAS EMPRESAS</h2>
+    <p>Acesse o relatório completo de 2026 da Promon S.A.</p>
+  </section>
+</main>
+
+<script src="assets/js/script.js"></script>
 </body>
 </html>
-
