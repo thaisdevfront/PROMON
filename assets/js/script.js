@@ -37,3 +37,34 @@ style.textContent = `
   }
 `;
 document.head.appendChild(style);
+
+/* =========================
+   LANGUAGE DROPDOWN
+========================= */
+
+const languageDropdown = document.querySelector(".language-dropdown");
+const languageButton = document.querySelector(".language-button");
+
+if (languageDropdown && languageButton) {
+
+  languageButton.addEventListener("click", function (event) {
+    event.stopPropagation();
+
+    const isOpen = languageDropdown.classList.toggle("open");
+
+    languageButton.setAttribute(
+      "aria-expanded",
+      isOpen ? "true" : "false"
+    );
+  });
+
+  document.addEventListener("click", function () {
+    languageDropdown.classList.remove("open");
+
+    languageButton.setAttribute(
+      "aria-expanded",
+      "false"
+    );
+  });
+
+}
