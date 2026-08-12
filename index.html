@@ -1,187 +1,515 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Relatório Anual 2026 — Promon S.A.">
-  <title>Relatório Anual 2026 | Promon</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;500;600;700&family=Barlow:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>aPromon | Relatório Anual 2026s</title>
+
+    <!-- UI -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- ANI -->
+    <style>
+        @keyframes pulse-logo {
+            0%, 100% { opacity: .75; transform: scale(.98); }
+            50% { opacity: 1; transform: scale(1); }
+        }
+    </style>
 </head>
+
 <body>
 
-<header class="topbar">
-  <a class="brand" href="#" aria-label="Promon">
-    <span>PROMON</span><b>®</b>
-  </a>
-
-  <nav class="nav">
-    <a href="#relatorio">Relatório Anual 2026 completo</a>
-    <a href="#destaques">Demonstrações Financeiras 2026</a>
-
-    <!-- Language Dropdown -->
-    <div class="language-dropdown">
-      <button
-        class="language-button"
-        type="button"
-        aria-haspopup="true"
-        aria-expanded="false"
-      >
-        PT
-        <span class="language-arrow">⌄</span>
-      </button>
-
-      <div class="language-menu">
-        <a href="#" class="language-option active">
-          PT
-        </a>
-
-        <a href="en.html" class="language-option">
-          EN
-        </a>
-      </div>
+    <!-- LOAD -->
+    <div id="loading" class="fixed inset-0 z-50 flex items-center justify-center bg-[#f8f8f8]">
+        <img
+            src="assets/images/logo-promon.png"
+            class="w-28 animate-[pulse-logo_1.8s_ease-in-out_infinite]"
+            alt="Logo"
+        >
     </div>
+
+    <!-- HEADER -->
+   <header class="relative md:absolute top-0 left-0 z-40 w-full px-5 py-5 md:px-8 md:py-6">
+
+  <div class="mx-auto flex items-center justify-between xl:justify-start
+              md:rounded-2xl md:bg-white md:px-6 md:py-4 md:shadow-sm">
+
+    <!-- CONTEÚDO DESKTOP AGRUPADO À DIREITA -->
+    <div class="flex items-center gap-8">
+
+      <!-- LOGO -->
+      <div class="flex items-center gap-5">
+
+        <img
+          src="assets/images/logo-promon.png"
+          alt="aPromon"
+          class="w-24 md:w-auto"
+        >
+
+        <!-- LINHAS -->
+        <div class="hidden md:flex items-center gap-1">
+          <span class="h-px w-6 bg-[#ed4b0b]"></span>
+          <span class="h-px w-3 bg-[#ed4b0b]"></span>
+        </div>
+
+      </div>
+
+
+      <!-- DESKTOP NAV -->
+      <nav class="hidden md:flex items-center gap-8
+                  text-sm font-medium text-[#ed4b0b]">
+
+        <a
+          href="#sobre"
+          class="transition-all duration-300 hover:opacity-50"
+        >
+          Relatório
+Anual 2026 completo
+        </a>
+
+        <a
+          href="#relatorio"
+          class="transition-all duration-300 hover:opacity-50"
+        >
+         Relatório
+Anual  
+        </a>
+
+      </nav>
+
+    </div>
+
+
+    <!-- MOBILE MENU BUTTON -->
+    <button
+      id="menuBtn"
+      class="flex h-10 w-10 items-center justify-center
+             text-[#ed4b0b] md:hidden"
+      aria-label="Abrir menu"
+    >
+      <i data-lucide="menu" class="h-6 w-6"></i>
+    </button>
+
+  </div>
+
+
+  <!-- MOBILE MENU -->
+  <nav
+    id="mobileMenu"
+    class="mt-3 hidden rounded-2xl bg-white p-5 shadow-sm md:hidden"
+  >
+
+    <div class="flex flex-col gap-5 text-sm font-medium text-[#ed4b0b]">
+
+      <a
+        href="#sobre"
+        class="transition-opacity hover:opacity-50"
+      >
+        Sobre
+      </a>
+
+      <a
+        href="#relatorio"
+        class="transition-opacity hover:opacity-50"
+      >
+        Relatório
+      </a>
+
+    </div>
+
   </nav>
 
-  <button class="menu-toggle" aria-label="Abrir menu">
-    <span></span>
-    <span></span>
-    <span></span>
-  </button>
 </header>
 
-<main id="relatorio">
 
-  <section class="hero">
-    <div class="hero-gray hero-gray-1"></div>
-    <div class="hero-gray hero-gray-2"></div>
-    <div class="hero-copy">
-      <h1>Relatório<br>Anual 2026</h1>
-    </div>
-    <div class="hero-photo" role="img" aria-label="Imagem urbana de infraestrutura">
-      <div class="city-lines"></div>
-      <div class="hero-slash slash-a"></div>
-      <div class="hero-slash slash-b"></div>
-      <div class="hero-slash slash-c"></div>
-    </div>
-    <div class="hero-bottom"></div>
-  </section>
+    <!-- HERO -->
+    <section class="hero-app min-h-[75vh] bg-[url('assets/images/bg.png')] bg-cover bg-center bg-no-repeat flex items-center justify-center">
+        <div class="
+            relative
+            w-full
+            max-w-[510px]
+            min-h-[158px]
+            bg-[#ed4b0b]
+            text-white
+            px-9
+            py-7
+            flex
+            items-center
+            [clip-path:polygon(0_0,95%_0,83.5%_100%,0_100%)]
+        ">
 
-  <section class="about">
-    <div class="about-orange"></div>
-    <div class="person person-about">
-      <div class="person-head"></div>
-      <div class="person-body"></div>
-      <div class="helmet">promon</div>
-    </div>
-    <div class="about-copy">
-      <h2>A PROMON S.A.</h2>
-      <p>A Promon S.A. é a holding empresarial que atua em engenharia e tecnologia, na definição de diretrizes estratégicas, na governança corporativa e na sustentabilidade das companhias que integram seu portfólio.</p>
-      <p>Por meio dessa estrutura, mantém o alinhamento e a integração entre as diferentes negócios.</p>
-    </div>
-  </section>
+            <h1 class="display text-[72px] leading-[0.9] tracking-[-2px]">
+                Relatório<br>
+                <strong>Anual 2026</strong>
+            </h1>
 
-  <section class="investments">
-    <h2>A PROMON S.A. E SUAS EMPRESAS INVESTIDAS</h2>
-    <div class="org-chart">
-      <div class="org-node top">ACIONISTAS</div>
-      <div class="org-node promon">PROMON<span>®</span></div>
-      <div class="org-node fpps">Fundação<br>Promon FPPS</div>
-      <div class="org-node phl">PHL<br>Investments</div>
-      <div class="org-node company c1">promon<br><small>engenharia</small></div>
-      <div class="org-node company c2">forzy</div>
-      <div class="org-node company c3">PETI Educação e<br>Treinamento</div>
-      <div class="org-node company c4">LOGICALIS<br><small>Latin America</small></div>
-      <div class="share s1">50%</div><div class="share s2">100%</div><div class="share s3">31,5%</div>
-      <i class="line l1"></i><i class="line l2"></i><i class="line l3"></i><i class="line l4"></i>
-    </div>
-  </section>
+        </div>
+    </section>
 
-  <section class="highlights" id="destaques">
-    <div class="section-heading">
-      <h2>DESTAQUES DE 2026</h2>
-      <p>Veja os principais resultados e destaques das empresas da Promon S.A. no ano de 2026.</p>
+    <section class="relative overflow-hidden bg-white">
+
+  <div class="mx-auto grid min-h-[520px] max-w-7xl grid-cols-1 lg:grid-cols-2">
+
+    <!-- ESQUERDA: LARANJA -->
+    <div class="relative flex min-h-[360px] items-center justify-center bg-[#E04403] lg:min-h-[520px]">
+
+      <!-- Personagem sobreposto -->
+      <img
+        src="assets/images/persona-promon.png"
+        alt="Profissional Promon"
+        class="absolute left-1/2 top-1/2 z-20
+               h-[420px] w-auto max-w-none
+               -translate-x-1/2 -translate-y-1/2
+               object-contain
+               drop-shadow-[0_20px_30px_rgba(0,0,0,0.18)]
+               transition-all duration-700
+               hover:-translate-y-[53%] hover:scale-[1.02]
+               sm:h-[500px]
+               lg:h-[570px]"
+      >
+
     </div>
 
-    <div class="cards-grid">
-      <div class="card-column">
-        <article class="metric-card orange">
-          <h3>Promon S.A.</h3>
-          <div class="metric">◉ <strong>R$ 1,1 bilhão</strong><small>de receita bruta anual</small></div>
-          <div class="metric">◎ <strong>3.184 profissionais</strong><small>incluindo as pessoas da Promon S.A., Promon Engenharia, Forzy e Logicalis</small></div>
-        </article>
 
-        <article class="metric-card yellow">
-          <h3>Forzy</h3>
-          <div class="metric">◉ <strong>R$ 12,7 milhões</strong><small>em receitas, crescimento de aproximadamente 19,5% em comparação com 2025</small></div>
-          <div class="metric">◎ <strong>R$ 11,8 milhões</strong><small>em receita líquida</small></div>
-          <div class="metric">◉ <strong>Seu segundo ano de atuação foi marcado pela estruturação e início da aceleração...</strong></div>
-        </article>
+    <!-- DIREITA: BRANCO -->
+    <div class="relative flex items-center bg-white px-6 py-16
+                sm:px-10 lg:px-16">
 
-        <article class="metric-card green">
-          <h3>Fundação Promon de Previdência Social (FPPS)</h3>
-          <div class="metric">◉ <strong>R$ 2,0 bilhões</strong><small>em investimentos totais nos dois planos previdenciários</small></div>
-          <div class="metric">◎ <strong>R$ 21,5 milhões</strong><small>em contribuições recebidas</small></div>
-          <div class="metric">◉ <strong>R$ 127,7 milhões</strong><small>em benefícios de prestação continuada pagos</small></div>
-          <div class="metric">◎ <strong>1.279 participantes</strong><small>entre ativos e autopatrocinados</small></div>
-        </article>
+      <div class="relative z-30 max-w-xl lg:ml-12">
+
+        <!-- detalhe -->
+        <div class="mb-5 flex items-center gap-3">
+
+          <span class="h-1 w-10 rounded-full bg-orange-600"></span>
+
+          <span class="text-xs font-bold uppercase tracking-[0.25em] text-orange-600">
+            Grupo Promon
+          </span>
+
+        </div>
+
+ 
+
+        <!-- texto -->
+        <p class="mt-6 text-base leading-7 text-gray-600 sm:text-lg sm:leading-8">
+
+          A Promon S.A. é a <strong class="text-gray-800">holding</strong>
+          empresarial que atua em engenharia e tecnologia, na definição de
+          diretrizes estratégicas, na governança corporativa e na sustentabilidade
+          das companhias que integram seu portfólio.
+
+        </p>
+ 
+
+        <!-- indicador -->
+        <div class="mt-8 flex items-center gap-3">
+
+          <div class="flex h-10 w-10 items-center justify-center rounded-full
+                      border border-orange-200 bg-orange-50 text-orange-600
+                      transition-all duration-300
+                      hover:bg-orange-600 hover:text-white hover:scale-110">
+
+            <i data-lucide="arrow-down-right" class="h-5 w-5"></i>
+
+          </div>
+
+          <span class="text-sm font-medium text-gray-500">
+            Engenharia · Tecnologia · Estratégia
+          </span>
+
+        </div>
+
       </div>
 
-      <div class="card-column right">
-        <article class="metric-card navy">
-          <h3>Promon Engenharia</h3>
-          <div class="metric">◉ <strong>R$ 272 milhões</strong><small>em vendas, segundo melhor resultado em 10 anos</small></div>
-          <div class="metric">◎ <strong>R$ 201 milhões</strong><small>em receita bruta</small></div>
-          <div class="metric">◉ <strong>Reconstrução da abordagem no mercado...</strong></div>
-          <div class="metric">◎ <strong>Aumento do NPS</strong> em relação a 2025</div>
-        </article>
-
-        <article class="metric-card blue">
-          <h3>Logicalis Latin America</h3>
-          <div class="metric">◉ <strong>R$ 2,5 bilhões</strong><small>em vendas</small></div>
-          <div class="metric">◎ <strong>R$ 2,8 bilhões</strong><small>em receita bruta</small></div>
-          <div class="metric">◉ <strong>Avanço na estratégia de transformação do negócio...</strong></div>
-          <div class="metric">◎ <strong>Fortalecimento de parcerias estratégicas</strong></div>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <section class="esg">
-    <div class="section-heading">
-      <h2>ESG NA PROMON EM 2026</h2>
-      <p>Conheça as práticas e iniciativas ambientais, sociais e de governança das empresas da Promon S.A. no ano social.</p>
     </div>
 
-    <article class="esg-band orange-band">
-      <div class="band-copy"><h3>Promon S.A.</h3><ul><li>Promoção de ações de diversidade no ambiente corporativo.</li><li>Fortalecimento de práticas ambientais e sociais.</li><li>Gestão responsável e compromisso com a sustentabilidade.</li><li>Avanços em indicadores ESG.</li></ul></div>
-      <div class="image-placeholder photo-woman" aria-label="Imagem ilustrativa"></div>
-    </article>
+  </div>
 
-    <article class="esg-band dark-band">
-      <div class="image-placeholder photo-team" aria-label="Imagem ilustrativa"></div>
-      <div class="band-copy"><h3>Promon Engenharia</h3><ul><li>Investimentos ESG e desenvolvimento do inventário de emissões.</li><li>Incorporação de critérios ambientais e sociais.</li><li>Capacitação das equipes e fortalecimento da cultura.</li></ul></div>
-    </article>
+</section>
+<section id="grupo" class="
+         relative
+         bg-[#f0f0f5]
+         py-[70px]
+         overflow-hidden
+         ">
 
-    <article class="esg-band yellow-band">
-      <div class="band-copy"><h3>Forzy</h3><ul><li>Avanços na digitalização de ativos e melhoria da gestão operacional.</li><li>Iniciativas para redução de impactos ambientais.</li><li>Uso de tecnologia para ampliar eficiência.</li></ul></div>
-      <div class="image-placeholder photo-worker" aria-label="Imagem ilustrativa"></div>
-    </article>
+    <!-- DIAGONAL DIREITA -->
 
-    <article class="esg-band blue-band">
-      <div class="image-placeholder photo-business" aria-label="Imagem ilustrativa"></div>
-      <div class="band-copy"><h3>Logicalis Latin America</h3><ul><li>Avanços em práticas de inovação e sustentabilidade.</li><li>Expansão de iniciativas de diversidade e inclusão.</li><li>Compromisso com uma transformação digital responsável.</li></ul></div>
-    </article>
-  </section>
+ 
 
-  <section class="cta">
-    <h2>SAIBA MAIS SOBRE A PROMON S.A. E SUAS EMPRESAS</h2>
-    <p>Acesse o relatório completo de 2026 da Promon S.A.</p>
-  </section>
-</main>
 
-<script src="assets/js/script.js"></script>
+    <div class="
+        relative
+        max-w-[900px]
+        mx-auto
+        px-6
+    ">
+
+       
+
+
+        <!-- ORGANOGRAMA -->
+
+        <div class="mt-12 max-w-[700px] mx-auto">
+
+            <!-- PROMON -->
+
+            <div class="flex justify-center">
+
+                <div class="
+                    bg-white
+                    border
+                    border-gray-200
+                    w-[130px]
+                    h-[48px]
+                    flex
+                    flex-col
+                    items-center
+                    justify-center
+                    shadow-sm
+                ">
+
+                    <span class="font-bold text-gray-500 text-[11px]">
+                        PROMON
+                    </span>
+
+                    <span class="micro text-gray-400">
+                        S.A.
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- LINHA -->
+
+            <div class="h-8 w-px bg-gray-300 mx-auto"></div>
+
+            <div class="h-px bg-gray-300 w-[82%] mx-auto"></div>
+
+
+            <!-- EMPRESAS -->
+
+            <div class="
+                grid
+                grid-cols-2
+                md:grid-cols-4
+                gap-3
+            ">
+
+                <!-- 01 -->
+
+                <div class="relative pt-8">
+
+                    <div class="
+                        absolute
+                        top-0
+                        left-1/2
+                        h-8
+                        w-px
+                        bg-gray-300
+                    "></div>
+
+                    <div class="
+                        bg-white
+                        border
+                        border-gray-200
+                        h-[65px]
+                        flex
+                        flex-col
+                        justify-center
+                        items-center
+                    ">
+
+                        <b class="text-[#ed4b0b] text-[11px]">
+                            Promon
+                        </b>
+
+                        <span class="micro text-gray-400">
+                            Engenharia
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- 02 -->
+
+                <div class="relative pt-8">
+
+                    <div class="
+                        absolute
+                        top-0
+                        left-1/2
+                        h-8
+                        w-px
+                        bg-gray-300
+                    "></div>
+
+                    <div class="
+                        bg-white
+                        border
+                        border-gray-200
+                        h-[65px]
+                        flex
+                        flex-col
+                        justify-center
+                        items-center
+                    ">
+
+                        <b class="text-[#f4a719] text-[11px]">
+                            Forzy
+                        </b>
+
+                        <span class="micro text-gray-400">
+                            Tecnologia
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- 03 -->
+
+                <div class="relative pt-8">
+
+                    <div class="
+                        absolute
+                        top-0
+                        left-1/2
+                        h-8
+                        w-px
+                        bg-gray-300
+                    "></div>
+
+                    <div class="
+                        bg-white
+                        border
+                        border-gray-200
+                        h-[65px]
+                        flex
+                        flex-col
+                        justify-center
+                        items-center
+                    ">
+
+                        <b class="text-gray-600 text-[11px]">
+                            FPPS
+                        </b>
+
+                        <span class="micro text-gray-400">
+                            Previdência
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- 04 -->
+
+                <div class="relative pt-8">
+
+                    <div class="
+                        absolute
+                        top-0
+                        left-1/2
+                        h-8
+                        w-px
+                        bg-gray-300
+                    "></div>
+
+                    <div class="
+                        bg-white
+                        border
+                        border-gray-200
+                        h-[65px]
+                        flex
+                        flex-col
+                        justify-center
+                        items-center
+                    ">
+
+                        <b class="text-[#d7352d] text-[11px]">
+                            Logicals
+                        </b>
+
+                        <span class="micro text-gray-400">
+                            Latin America
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+ <footer class="bg-[#ed4b0b] text-white">
+
+    <div class="
+        max-w-[1000px]
+        mx-auto
+        px-6
+        py-7
+        flex
+        flex-col
+        md:flex-row
+        justify-between
+        gap-3
+        text-[8px]
+    ">
+
+        <span>
+            <strong>PROMON</strong>
+            · Relatório Anual 2026
+        </span>
+
+        <span class="opacity-70">
+            © 2026 Promon S.A.
+        </span>
+
+    </div>
+
+</footer>
+    <!-- load js -->
+   <script>
+    const loadingTime = 5000;
+
+    window.addEventListener('load', () => {
+        setTimeout(() => {
+            const loading = document.getElementById('loading');
+
+            loading.classList.add(
+                'opacity-0',
+                'transition-opacity',
+                'duration-700',
+                'ease-out'
+            );
+
+            setTimeout(() => loading.remove(), 700);
+        }, loadingTime);
+    });
+</script>
+
+    <!-- menu js -->
+     <script>
+    lucide.createIcons();
+
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    menuBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+    });
+</script>
 </body>
 </html>
