@@ -1,28 +1,829 @@
+```html
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Relatório Anual 2026 — Promon S.A.">
-  <title>Relatório Anual 2026 | Promon</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;500;600;700&family=Barlow:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Relatório Anual 2026 — Promon S.A.">
+<title>Relatório Anual 2026 | Promon</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;500;600;700&family=Barlow:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --orange:#F58220;
+  --orange-dark:#d9670d;
+  --gray:#eee;
+  --gray2:#ddd;
+  --gray3:#ccc;
+  --black:#111;
+  --white:#fff;
+}
+
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  font-family:'Barlow',sans-serif;
+  background:var(--gray);
+  color:var(--black);
+  overflow-x:hidden;
+  opacity:0;
+  animation:pageIn .7s ease forwards;
+}
+
+body.page-out{
+  animation:pageOut .45s ease forwards;
+}
+
+@keyframes pageIn{
+  from{
+    opacity:0;
+    transform:translateY(15px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+@keyframes pageOut{
+  from{
+    opacity:1;
+    transform:translateY(0);
+  }
+  to{
+    opacity:0;
+    transform:translateY(-15px);
+  }
+}
+
+a{
+  color:inherit;
+  text-decoration:none;
+}
+
+/* HEADER */
+
+.topbar{
+  position:sticky;
+  top:0;
+  z-index:100;
+  width:100%;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:18px 5%;
+  background:rgba(238,238,238,.9);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid transparent;
+  transition:.3s ease;
+}
+
+.topbar.scrolled{
+  border-color:#d5d5d5;
+  box-shadow:0 8px 30px rgba(0,0,0,.08);
+}
+
+.brand{
+  display:flex;
+  align-items:flex-start;
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:30px;
+  font-weight:700;
+  letter-spacing:-1px;
+  transition:.3s ease;
+}
+
+.brand b{
+  color:var(--orange);
+  font-size:10px;
+  margin-left:3px;
+}
+
+.brand:hover{
+  color:var(--orange);
+  transform:translateY(-2px);
+}
+
+.nav{
+  display:flex;
+  align-items:center;
+  gap:28px;
+  font-size:14px;
+  font-weight:500;
+}
+
+.nav>a{
+  transition:.25s ease;
+}
+
+.nav>a:hover{
+  color:var(--orange);
+}
+
+/* LANGUAGE */
+
+.language-dropdown{
+  position:relative;
+}
+
+.language-button{
+  display:flex;
+  align-items:center;
+  gap:7px;
+  border:1px solid #ccc;
+  background:#fff;
+  padding:8px 12px;
+  cursor:pointer;
+  font:inherit;
+  transition:.25s ease;
+}
+
+.language-button:hover{
+  border-color:var(--orange);
+  color:var(--orange);
+}
+
+.language-arrow{
+  transition:.3s ease;
+}
+
+.language-dropdown.open .language-arrow{
+  transform:rotate(180deg);
+}
+
+.language-menu{
+  position:absolute;
+  right:0;
+  top:calc(100% + 8px);
+  min-width:80px;
+  padding:5px;
+  background:#fff;
+  border:1px solid #ddd;
+  box-shadow:0 15px 35px rgba(0,0,0,.12);
+  opacity:0;
+  visibility:hidden;
+  transform:translateY(-8px);
+  transition:.25s ease;
+}
+
+.language-dropdown.open .language-menu{
+  opacity:1;
+  visibility:visible;
+  transform:translateY(0);
+}
+
+.language-option{
+  display:block;
+  padding:8px 12px;
+  font-size:13px;
+}
+
+.language-option:hover,
+.language-option.active{
+  color:var(--orange);
+  background:#f5f5f5;
+}
+
+/* MOBILE MENU */
+
+.menu-toggle{
+  display:none;
+  width:42px;
+  height:42px;
+  border:0;
+  background:transparent;
+  cursor:pointer;
+}
+
+.menu-toggle span{
+  display:block;
+  width:24px;
+  height:2px;
+  margin:5px auto;
+  background:#111;
+  transition:.3s ease;
+}
+
+/* HERO */
+
+.hero{
+  position:relative;
+  min-height:650px;
+  display:grid;
+  grid-template-columns:45% 55%;
+  overflow:hidden;
+  background:var(--gray);
+}
+
+.hero-copy{
+  position:relative;
+  z-index:5;
+  display:flex;
+  align-items:center;
+  padding:8%;
+  animation:heroText 1s .2s both;
+}
+
+@keyframes heroText{
+  from{
+    opacity:0;
+    transform:translateX(-50px);
+  }
+  to{
+    opacity:1;
+    transform:translateX(0);
+  }
+}
+
+.hero-copy h1{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:clamp(70px,9vw,145px);
+  line-height:.82;
+  font-weight:500;
+  letter-spacing:-5px;
+}
+
+.hero-photo{
+  position:relative;
+  min-height:650px;
+  background:
+    linear-gradient(135deg,rgba(245,130,32,.92),rgba(245,130,32,.55)),
+    linear-gradient(45deg,#aaa,#ddd);
+  overflow:hidden;
+  animation:heroPhoto 1.2s ease both;
+}
+
+@keyframes heroPhoto{
+  from{
+    opacity:0;
+    transform:translateX(80px);
+  }
+  to{
+    opacity:1;
+    transform:translateX(0);
+  }
+}
+
+.hero-photo::before{
+  content:"";
+  position:absolute;
+  inset:-20%;
+  background:
+    linear-gradient(110deg,transparent 40%,rgba(255,255,255,.2),transparent 60%);
+  transform:translateX(-100%);
+  animation:shine 4s 1.5s infinite;
+}
+
+@keyframes shine{
+  to{
+    transform:translateX(100%);
+  }
+}
+
+.city-lines{
+  position:absolute;
+  inset:0;
+  opacity:.25;
+  background:
+    linear-gradient(90deg,transparent 49%,#fff 50%,transparent 51%),
+    linear-gradient(0deg,transparent 49%,#fff 50%,transparent 51%);
+  background-size:80px 80px;
+  transform:perspective(500px) rotateX(55deg) scale(1.5);
+}
+
+.hero-slash{
+  position:absolute;
+  width:120%;
+  height:15px;
+  background:#fff;
+  opacity:.5;
+  transform:rotate(-25deg);
+}
+
+.slash-a{top:30%;left:-20%}
+.slash-b{top:50%;left:-20%}
+.slash-c{top:70%;left:-20%}
+
+.hero-bottom{
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:0;
+  height:12px;
+  background:var(--orange);
+  z-index:10;
+}
+
+/* SECTIONS */
+
+section:not(.hero){
+  padding:100px 7%;
+}
+
+.about{
+  position:relative;
+  display:grid;
+  grid-template-columns:40% 60%;
+  gap:60px;
+  align-items:center;
+  background:#eee;
+}
+
+.about-orange{
+  position:absolute;
+  left:0;
+  top:0;
+  width:8px;
+  height:100%;
+  background:var(--orange);
+}
+
+.person{
+  min-height:400px;
+  position:relative;
+  background:#ddd;
+  overflow:hidden;
+}
+
+.person-head{
+  position:absolute;
+  width:130px;
+  height:130px;
+  border-radius:50%;
+  background:#aaa;
+  top:60px;
+  left:50%;
+  transform:translateX(-50%);
+}
+
+.person-body{
+  position:absolute;
+  width:230px;
+  height:280px;
+  border-radius:120px 120px 0 0;
+  background:#999;
+  left:50%;
+  bottom:-100px;
+  transform:translateX(-50%);
+}
+
+.helmet{
+  position:absolute;
+  top:55px;
+  left:50%;
+  transform:translateX(-50%);
+  width:145px;
+  height:45px;
+  border-radius:80px 80px 15px 15px;
+  background:var(--orange);
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:600;
+  font-size:13px;
+}
+
+.about-copy h2,
+.investments h2,
+.section-heading h2{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:clamp(42px,5vw,72px);
+  line-height:.95;
+  margin-bottom:25px;
+}
+
+.about-copy p{
+  color:#555;
+  line-height:1.7;
+  font-size:17px;
+  max-width:700px;
+  margin-bottom:18px;
+}
+
+/* INVESTMENTS */
+
+.investments{
+  background:#ddd;
+}
+
+.org-chart{
+  position:relative;
+  max-width:1000px;
+  min-height:500px;
+  margin:70px auto 0;
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  align-items:center;
+  gap:20px;
+}
+
+.org-node{
+  position:relative;
+  z-index:2;
+  min-width:150px;
+  padding:20px;
+  text-align:center;
+  background:#fff;
+  border:1px solid #ccc;
+  font-weight:600;
+  transition:.35s ease;
+}
+
+.org-node:hover{
+  transform:translateY(-7px);
+  box-shadow:0 15px 30px rgba(0,0,0,.12);
+}
+
+.org-node.top,
+.org-node.promon{
+  background:var(--orange);
+  color:#fff;
+  border-color:var(--orange);
+}
+
+.org-node.promon span{
+  font-size:9px;
+}
+
+.org-node.company{
+  background:#f7f7f7;
+}
+
+.share{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:55px;
+  height:55px;
+  border-radius:50%;
+  background:var(--orange);
+  color:#fff;
+  font-weight:700;
+}
+
+/* HIGHLIGHTS */
+
+.highlights{
+  background:#eee;
+}
+
+.section-heading{
+  max-width:800px;
+  margin-bottom:60px;
+}
+
+.section-heading p{
+  color:#666;
+  font-size:18px;
+  line-height:1.6;
+}
+
+.cards-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:25px;
+}
+
+.card-column{
+  display:flex;
+  flex-direction:column;
+  gap:25px;
+}
+
+.metric-card{
+  padding:35px;
+  border-radius:3px;
+  min-height:250px;
+  border:1px solid rgba(0,0,0,.08);
+  transition:.35s ease;
+}
+
+.metric-card:hover{
+  transform:translateY(-8px);
+  box-shadow:0 20px 40px rgba(0,0,0,.12);
+}
+
+.metric-card h3{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:30px;
+  margin-bottom:25px;
+}
+
+.metric-card.orange,
+.metric-card.yellow{
+  background:var(--orange);
+  color:#fff;
+}
+
+.metric-card.green,
+.metric-card.blue{
+  background:#d5d5d5;
+  color:#111;
+}
+
+.metric-card.navy{
+  background:#222;
+  color:#fff;
+}
+
+.metric{
+  display:flex;
+  align-items:flex-start;
+  gap:10px;
+  margin:20px 0;
+  line-height:1.4;
+  transition:.25s ease;
+}
+
+.metric:hover{
+  transform:translateX(5px);
+}
+
+.metric strong{
+  font-size:20px;
+}
+
+.metric small{
+  display:block;
+  font-size:14px;
+  opacity:.8;
+}
+
+/* ESG */
+
+.esg{
+  background:#ddd;
+}
+
+.esg-band{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  min-height:420px;
+  margin-bottom:25px;
+  overflow:hidden;
+}
+
+.band-copy{
+  padding:60px;
+}
+
+.band-copy h3{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:55px;
+  margin-bottom:25px;
+}
+
+.band-copy ul{
+  padding-left:20px;
+  line-height:1.8;
+  font-size:17px;
+}
+
+.orange-band{
+  background:var(--orange);
+  color:#fff;
+}
+
+.dark-band{
+  background:#222;
+  color:#fff;
+}
+
+.yellow-band{
+  background:var(--orange);
+  color:#fff;
+}
+
+.blue-band{
+  background:#d5d5d5;
+  color:#111;
+}
+
+.image-placeholder{
+  min-height:420px;
+  position:relative;
+  background:#aaa;
+  overflow:hidden;
+}
+
+.image-placeholder::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(110deg,transparent 30%,rgba(255,255,255,.3),transparent 70%);
+  transform:translateX(-100%);
+  transition:1s ease;
+}
+
+.esg-band:hover .image-placeholder::after{
+  transform:translateX(100%);
+}
+
+.photo-woman{
+  background:
+    linear-gradient(135deg,rgba(245,130,32,.5),rgba(0,0,0,.1)),
+    #999;
+}
+
+.photo-team{
+  background:#777;
+}
+
+.photo-worker{
+  background:
+    linear-gradient(135deg,rgba(245,130,32,.45),rgba(0,0,0,.1)),
+    #999;
+}
+
+.photo-business{
+  background:#aaa;
+}
+
+/* CTA */
+
+.cta{
+  background:#111;
+  color:#fff;
+  text-align:center;
+  padding:110px 7%!important;
+}
+
+.cta h2{
+  max-width:900px;
+  margin:auto auto 20px;
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:clamp(42px,6vw,80px);
+  line-height:.95;
+}
+
+.cta p{
+  color:#aaa;
+  font-size:18px;
+}
+
+.enter-button{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:12px;
+  margin-top:30px;
+  padding:16px 35px;
+  border-radius:999px;
+  background:var(--orange);
+  color:#fff;
+  font-weight:600;
+  letter-spacing:.05em;
+  transition:.3s ease;
+}
+
+.enter-button:hover{
+  background:#ff963d;
+  transform:translateY(-5px);
+  box-shadow:0 15px 35px rgba(245,130,32,.35);
+}
+
+.enter-button:active{
+  transform:scale(.96);
+}
+
+/* REVEAL */
+
+.reveal{
+  opacity:0;
+  transform:translateY(45px);
+  transition:
+    opacity .8s ease,
+    transform .8s cubic-bezier(.2,.8,.2,1);
+}
+
+.reveal.visible{
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* RESPONSIVE */
+
+@media(max-width:900px){
+
+  .nav{
+    display:none;
+  }
+
+  .menu-toggle{
+    display:block;
+  }
+
+  .hero{
+    grid-template-columns:1fr;
+    min-height:auto;
+  }
+
+  .hero-copy{
+    min-height:420px;
+    padding:12%;
+  }
+
+  .hero-photo{
+    min-height:400px;
+  }
+
+  .about{
+    grid-template-columns:1fr;
+  }
+
+  .cards-grid{
+    grid-template-columns:1fr;
+  }
+
+  .esg-band{
+    grid-template-columns:1fr;
+  }
+
+  .esg-band:nth-child(even) .image-placeholder{
+    order:-1;
+  }
+
+  section:not(.hero){
+    padding:70px 6%;
+  }
+}
+
+@media(max-width:600px){
+
+  .topbar{
+    padding:15px 5%;
+  }
+
+  .brand{
+    font-size:25px;
+  }
+
+  .hero-copy{
+    min-height:350px;
+  }
+
+  .hero-copy h1{
+    font-size:72px;
+    letter-spacing:-3px;
+  }
+
+  .hero-photo{
+    min-height:300px;
+  }
+
+  .metric-card{
+    padding:25px;
+  }
+
+  .band-copy{
+    padding:40px 25px;
+  }
+
+  .band-copy h3{
+    font-size:44px;
+  }
+
+  .cta{
+    padding:80px 6%!important;
+  }
+}
+</style>
 </head>
+
 <body>
 
 <header class="topbar">
+
   <a class="brand" href="#" aria-label="Promon">
     <span>PROMON</span><b>®</b>
   </a>
 
   <nav class="nav">
-    <a href="#relatorio">Relatório Anual 2026 completo</a>
-    <a href="#destaques">Demonstrações Financeiras 2026</a>
 
-    <!-- Language Dropdown -->
+    <a href="#relatorio">
+      Relatório Anual 2026 completo
+    </a>
+
+    <a href="#destaques">
+      Demonstrações Financeiras 2026
+    </a>
+
     <div class="language-dropdown">
+
       <button
         class="language-button"
         type="button"
@@ -34,6 +835,7 @@
       </button>
 
       <div class="language-menu">
+
         <a href="#" class="language-option active">
           PT
         </a>
@@ -41,8 +843,11 @@
         <a href="en.html" class="language-option">
           EN
         </a>
+
       </div>
+
     </div>
+
   </nav>
 
   <button class="menu-toggle" aria-label="Abrir menu">
@@ -50,138 +855,614 @@
     <span></span>
     <span></span>
   </button>
+
 </header>
 
 <main id="relatorio">
 
-  <section class="hero">
-    <div class="hero-gray hero-gray-1"></div>
-    <div class="hero-gray hero-gray-2"></div>
-    <div class="hero-copy">
-      <h1>Relatório<br>Anual 2026</h1>
-    </div>
-    <div class="hero-photo" role="img" aria-label="Imagem urbana de infraestrutura">
-      <div class="city-lines"></div>
-      <div class="hero-slash slash-a"></div>
-      <div class="hero-slash slash-b"></div>
-      <div class="hero-slash slash-c"></div>
-    </div>
-    <div class="hero-bottom"></div>
-  </section>
+<!-- HERO -->
 
-  <section class="about">
-    <div class="about-orange"></div>
-    <div class="person person-about">
-      <div class="person-head"></div>
-      <div class="person-body"></div>
-      <div class="helmet">promon</div>
-    </div>
-    <div class="about-copy">
-      <h2>A PROMON S.A.</h2>
-      <p>A Promon S.A. é a holding empresarial que atua em engenharia e tecnologia, na definição de diretrizes estratégicas, na governança corporativa e na sustentabilidade das companhias que integram seu portfólio.</p>
-      <p>Por meio dessa estrutura, mantém o alinhamento e a integração entre as diferentes negócios.</p>
-    </div>
-  </section>
+<section class="hero">
 
-  <section class="investments">
-    <h2>A PROMON S.A. E SUAS EMPRESAS INVESTIDAS</h2>
-    <div class="org-chart">
-      <div class="org-node top">ACIONISTAS</div>
-      <div class="org-node promon">PROMON<span>®</span></div>
-      <div class="org-node fpps">Fundação<br>Promon FPPS</div>
-      <div class="org-node phl">PHL<br>Investments</div>
-      <div class="org-node company c1">promon<br><small>engenharia</small></div>
-      <div class="org-node company c2">forzy</div>
-      <div class="org-node company c3">PETI Educação e<br>Treinamento</div>
-      <div class="org-node company c4">LOGICALIS<br><small>Latin America</small></div>
-      <div class="share s1">50%</div><div class="share s2">100%</div><div class="share s3">31,5%</div>
-      <i class="line l1"></i><i class="line l2"></i><i class="line l3"></i><i class="line l4"></i>
-    </div>
-  </section>
+  <div class="hero-copy">
+    <h1>
+      Relatório<br>
+      Anual 2026
+    </h1>
+  </div>
 
-  <section class="highlights" id="destaques">
-    <div class="section-heading">
-      <h2>DESTAQUES DE 2026</h2>
-      <p>Veja os principais resultados e destaques das empresas da Promon S.A. no ano de 2026.</p>
+  <div class="hero-photo">
+
+    <div class="city-lines"></div>
+
+    <div class="hero-slash slash-a"></div>
+    <div class="hero-slash slash-b"></div>
+    <div class="hero-slash slash-c"></div>
+
+  </div>
+
+  <div class="hero-bottom"></div>
+
+</section>
+
+<!-- ABOUT -->
+
+<section class="about reveal">
+
+  <div class="about-orange"></div>
+
+  <div class="person person-about">
+
+    <div class="person-head"></div>
+
+    <div class="person-body"></div>
+
+    <div class="helmet">
+      promon
     </div>
 
-    <div class="cards-grid">
-      <div class="card-column">
-        <article class="metric-card orange">
-          <h3>Promon S.A.</h3>
-          <div class="metric">◉ <strong>R$ 1,1 bilhão</strong><small>de receita bruta anual</small></div>
-          <div class="metric">◎ <strong>3.184 profissionais</strong><small>incluindo as pessoas da Promon S.A., Promon Engenharia, Forzy e Logicalis</small></div>
-        </article>
+  </div>
 
-        <article class="metric-card yellow">
-          <h3>Forzy</h3>
-          <div class="metric">◉ <strong>R$ 12,7 milhões</strong><small>em receitas, crescimento de aproximadamente 19,5% em comparação com 2025</small></div>
-          <div class="metric">◎ <strong>R$ 11,8 milhões</strong><small>em receita líquida</small></div>
-          <div class="metric">◉ <strong>Seu segundo ano de atuação foi marcado pela estruturação e início da aceleração...</strong></div>
-        </article>
+  <div class="about-copy">
 
-        <article class="metric-card green">
-          <h3>Fundação Promon de Previdência Social (FPPS)</h3>
-          <div class="metric">◉ <strong>R$ 2,0 bilhões</strong><small>em investimentos totais nos dois planos previdenciários</small></div>
-          <div class="metric">◎ <strong>R$ 21,5 milhões</strong><small>em contribuições recebidas</small></div>
-          <div class="metric">◉ <strong>R$ 127,7 milhões</strong><small>em benefícios de prestação continuada pagos</small></div>
-          <div class="metric">◎ <strong>1.279 participantes</strong><small>entre ativos e autopatrocinados</small></div>
-        </article>
-      </div>
+    <h2>
+      A PROMON S.A.
+    </h2>
 
-      <div class="card-column right">
-        <article class="metric-card navy">
-          <h3>Promon Engenharia</h3>
-          <div class="metric">◉ <strong>R$ 272 milhões</strong><small>em vendas, segundo melhor resultado em 10 anos</small></div>
-          <div class="metric">◎ <strong>R$ 201 milhões</strong><small>em receita bruta</small></div>
-          <div class="metric">◉ <strong>Reconstrução da abordagem no mercado...</strong></div>
-          <div class="metric">◎ <strong>Aumento do NPS</strong> em relação a 2025</div>
-        </article>
+    <p>
+      A Promon S.A. é a holding empresarial que atua em engenharia e tecnologia, na definição de diretrizes estratégicas, na governança corporativa e na sustentabilidade das companhias que integram seu portfólio.
+    </p>
 
-        <article class="metric-card blue">
-          <h3>Logicalis Latin America</h3>
-          <div class="metric">◉ <strong>R$ 2,5 bilhões</strong><small>em vendas</small></div>
-          <div class="metric">◎ <strong>R$ 2,8 bilhões</strong><small>em receita bruta</small></div>
-          <div class="metric">◉ <strong>Avanço na estratégia de transformação do negócio...</strong></div>
-          <div class="metric">◎ <strong>Fortalecimento de parcerias estratégicas</strong></div>
-        </article>
-      </div>
-    </div>
-  </section>
+    <p>
+      Por meio dessa estrutura, mantém o alinhamento e a integração entre as diferentes negócios.
+    </p>
 
-  <section class="esg">
-    <div class="section-heading">
-      <h2>ESG NA PROMON EM 2026</h2>
-      <p>Conheça as práticas e iniciativas ambientais, sociais e de governança das empresas da Promon S.A. no ano social.</p>
+  </div>
+
+</section>
+
+<!-- INVESTMENTS -->
+
+<section class="investments reveal">
+
+  <h2>
+    A PROMON S.A. E SUAS EMPRESAS INVESTIDAS
+  </h2>
+
+  <div class="org-chart">
+
+    <div class="org-node top">
+      ACIONISTAS
     </div>
 
-    <article class="esg-band orange-band">
-      <div class="band-copy"><h3>Promon S.A.</h3><ul><li>Promoção de ações de diversidade no ambiente corporativo.</li><li>Fortalecimento de práticas ambientais e sociais.</li><li>Gestão responsável e compromisso com a sustentabilidade.</li><li>Avanços em indicadores ESG.</li></ul></div>
-      <div class="image-placeholder photo-woman" aria-label="Imagem ilustrativa"></div>
-    </article>
+    <div class="org-node promon">
+      PROMON<span>®</span>
+    </div>
 
-    <article class="esg-band dark-band">
-      <div class="image-placeholder photo-team" aria-label="Imagem ilustrativa"></div>
-      <div class="band-copy"><h3>Promon Engenharia</h3><ul><li>Investimentos ESG e desenvolvimento do inventário de emissões.</li><li>Incorporação de critérios ambientais e sociais.</li><li>Capacitação das equipes e fortalecimento da cultura.</li></ul></div>
-    </article>
+    <div class="org-node fpps">
+      Fundação<br>
+      Promon FPPS
+    </div>
 
-    <article class="esg-band yellow-band">
-      <div class="band-copy"><h3>Forzy</h3><ul><li>Avanços na digitalização de ativos e melhoria da gestão operacional.</li><li>Iniciativas para redução de impactos ambientais.</li><li>Uso de tecnologia para ampliar eficiência.</li></ul></div>
-      <div class="image-placeholder photo-worker" aria-label="Imagem ilustrativa"></div>
-    </article>
+    <div class="org-node phl">
+      PHL<br>
+      Investments
+    </div>
 
-    <article class="esg-band blue-band">
-      <div class="image-placeholder photo-business" aria-label="Imagem ilustrativa"></div>
-      <div class="band-copy"><h3>Logicalis Latin America</h3><ul><li>Avanços em práticas de inovação e sustentabilidade.</li><li>Expansão de iniciativas de diversidade e inclusão.</li><li>Compromisso com uma transformação digital responsável.</li></ul></div>
-    </article>
-  </section>
+    <div class="org-node company c1">
+      promon<br>
+      <small>engenharia</small>
+    </div>
 
-  <section class="cta">
-    <h2>SAIBA MAIS SOBRE A PROMON S.A. E SUAS EMPRESAS</h2>
-    <p>Acesse o relatório completo de 2026 da Promon S.A.</p>
-  </section>
+    <div class="org-node company c2">
+      forzy
+    </div>
+
+    <div class="org-node company c3">
+      PETI Educação e<br>
+      Treinamento
+    </div>
+
+    <div class="org-node company c4">
+      LOGICALIS<br>
+      <small>Latin America</small>
+    </div>
+
+    <div class="share s1">
+      50%
+    </div>
+
+    <div class="share s2">
+      100%
+    </div>
+
+    <div class="share s3">
+      31,5%
+    </div>
+
+  </div>
+
+</section>
+
+<!-- HIGHLIGHTS -->
+
+<section class="highlights reveal" id="destaques">
+
+  <div class="section-heading">
+
+    <h2>
+      DESTAQUES DE 2026
+    </h2>
+
+    <p>
+      Veja os principais resultados e destaques das empresas da Promon S.A. no ano de 2026.
+    </p>
+
+  </div>
+
+  <div class="cards-grid">
+
+    <div class="card-column">
+
+      <article class="metric-card orange reveal">
+
+        <h3>
+          Promon S.A.
+        </h3>
+
+        <div class="metric">
+          ◉
+          <div>
+            <strong>R$ 1,1 bilhão</strong>
+            <small>de receita bruta anual</small>
+          </div>
+        </div>
+
+        <div class="metric">
+          ◎
+          <div>
+            <strong>3.184 profissionais</strong>
+            <small>
+              incluindo as pessoas da Promon S.A., Promon Engenharia, Forzy e Logicalis
+            </small>
+          </div>
+        </div>
+
+      </article>
+
+      <article class="metric-card yellow reveal">
+
+        <h3>
+          Forzy
+        </h3>
+
+        <div class="metric">
+          ◉
+          <div>
+            <strong>R$ 12,7 milhões</strong>
+            <small>
+              em receitas, crescimento de aproximadamente 19,5% em comparação com 2025
+            </small>
+          </div>
+        </div>
+
+        <div class="metric">
+          ◎
+          <div>
+            <strong>R$ 11,8 milhões</strong>
+            <small>
+              em receita líquida
+            </small>
+          </div>
+        </div>
+
+        <div class="metric">
+          ◉
+          <div>
+            <strong>
+              Seu segundo ano de atuação foi marcado pela estruturação e início da aceleração...
+            </strong>
+          </div>
+        </div>
+
+      </article>
+
+      <article class="metric-card green reveal">
+
+        <h3>
+          Fundação Promon de Previdência Social (FPPS)
+        </h3>
+
+        <div class="metric">
+          ◉
+          <div>
+            <strong>R$ 2,0 bilhões</strong>
+            <small>
+              em investimentos totais nos dois planos previdenciários
+            </small>
+          </div>
+        </div>
+
+        <div class="metric">
+          ◎
+          <div>
+            <strong>R$ 21,5 milhões</strong>
+            <small>
+              em contribuições recebidas
+            </small>
+          </div>
+        </div>
+
+        <div class="metric">
+          ◉
+          <div>
+            <strong>R$ 127,7 milhões</strong>
+            <small>
+              em benefícios de prestação continuada pagos
+            </small>
+          </div>
+        </div>
+
+        <div class="metric">
+          ◎
+          <div>
+            <strong>1.279 participantes</strong>
+            <small>
+              entre ativos e autopatrocinados
+            </small>
+          </div>
+        </div>
+
+      </article>
+
+    </div>
+
+    <div class="card-column right">
+
+      <article class="metric-card navy reveal">
+
+        <h3>
+          Promon Engenharia
+        </h3>
+
+        <div class="metric">
+          ◉
+          <div>
+            <strong>R$ 272 milhões</strong>
+            <small>
+              em vendas, segundo melhor resultado em 10 anos
+            </small>
+          </div>
+        </div>
+
+        <div class="metric">
+          ◎
+          <div>
+            <strong>R$ 201 milhões</strong>
+            <small>
+              em receita bruta
+            </small>
+          </div>
+        </div>
+
+        <div class="metric">
+          ◉
+          <div>
+            <strong>
+              Reconstrução da abordagem no mercado...
+            </strong>
+          </div>
+        </div>
+
+        <div class="metric">
+          ◎
+          <div>
+            <strong>Aumento do NPS</strong>
+            em relação a 2025
+          </div>
+        </div>
+
+      </article>
+
+      <article class="metric-card blue reveal">
+
+        <h3>
+          Logicalis Latin America
+        </h3>
+
+        <div class="metric">
+          ◉
+          <div>
+            <strong>R$ 2,5 bilhões</strong>
+            <small>
+              em vendas
+            </small>
+          </div>
+        </div>
+
+        <div class="metric">
+          ◎
+          <div>
+            <strong>R$ 2,8 bilhões</strong>
+            <small>
+              em receita bruta
+            </small>
+          </div>
+        </div>
+
+        <div class="metric">
+          ◉
+          <div>
+            <strong>
+              Avanço na estratégia de transformação do negócio...
+            </strong>
+          </div>
+        </div>
+
+        <div class="metric">
+          ◎
+          <div>
+            <strong>
+              Fortalecimento de parcerias estratégicas
+            </strong>
+          </div>
+        </div>
+
+      </article>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- ESG -->
+
+<section class="esg reveal">
+
+  <div class="section-heading">
+
+    <h2>
+      ESG NA PROMON EM 2026
+    </h2>
+
+    <p>
+      Conheça as práticas e iniciativas ambientais, sociais e de governança das empresas da Promon S.A. no ano social.
+    </p>
+
+  </div>
+
+  <article class="esg-band orange-band reveal">
+
+    <div class="band-copy">
+
+      <h3>
+        Promon S.A.
+      </h3>
+
+      <ul>
+        <li>Promoção de ações de diversidade no ambiente corporativo.</li>
+        <li>Fortalecimento de práticas ambientais e sociais.</li>
+        <li>Gestão responsável e compromisso com a sustentabilidade.</li>
+        <li>Avanços em indicadores ESG.</li>
+      </ul>
+
+    </div>
+
+    <div class="image-placeholder photo-woman"></div>
+
+  </article>
+
+  <article class="esg-band dark-band reveal">
+
+    <div class="image-placeholder photo-team"></div>
+
+    <div class="band-copy">
+
+      <h3>
+        Promon Engenharia
+      </h3>
+
+      <ul>
+        <li>Investimentos ESG e desenvolvimento do inventário de emissões.</li>
+        <li>Incorporação de critérios ambientais e sociais.</li>
+        <li>Capacitação das equipes e fortalecimento da cultura.</li>
+      </ul>
+
+    </div>
+
+  </article>
+
+  <article class="esg-band yellow-band reveal">
+
+    <div class="band-copy">
+
+      <h3>
+        Forzy
+      </h3>
+
+      <ul>
+        <li>Avanços na digitalização de ativos e melhoria da gestão operacional.</li>
+        <li>Iniciativas para redução de impactos ambientais.</li>
+        <li>Uso de tecnologia para ampliar eficiência.</li>
+      </ul>
+
+    </div>
+
+    <div class="image-placeholder photo-worker"></div>
+
+  </article>
+
+  <article class="esg-band blue-band reveal">
+
+    <div class="image-placeholder photo-business"></div>
+
+    <div class="band-copy">
+
+      <h3>
+        Logicalis Latin America
+      </h3>
+
+      <ul>
+        <li>Avanços em práticas de inovação e sustentabilidade.</li>
+        <li>Expansão de iniciativas de diversidade e inclusão.</li>
+        <li>Compromisso com uma transformação digital responsável.</li>
+      </ul>
+
+    </div>
+
+  </article>
+
+</section>
+
+<!-- CTA -->
+
+<section class="cta reveal">
+
+  <h2>
+    SAIBA MAIS SOBRE A PROMON S.A. E SUAS EMPRESAS
+  </h2>
+
+  <p>
+    Acesse o relatório completo de 2026 da Promon S.A.
+  </p>
+
+  <a href="app.html" class="enter-button">
+    ENTRAR
+    <span>→</span>
+  </a>
+
+</section>
+
 </main>
 
-<script src="assets/js/script.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded",()=>{
+
+  /* SCROLL ANIMATION */
+
+  const elements=document.querySelectorAll(".reveal");
+
+  const observer=new IntersectionObserver(entries=>{
+
+    entries.forEach(entry=>{
+
+      if(entry.isIntersecting){
+        entry.target.classList.add("visible");
+      }
+
+    });
+
+  },{
+    threshold:.12
+  });
+
+  elements.forEach(el=>observer.observe(el));
+
+
+  /* HEADER */
+
+  const header=document.querySelector(".topbar");
+
+  window.addEventListener("scroll",()=>{
+
+    if(window.scrollY>20){
+      header.classList.add("scrolled");
+    }else{
+      header.classList.remove("scrolled");
+    }
+
+  });
+
+
+  /* LANGUAGE */
+
+  const languageButton=document.querySelector(".language-button");
+  const languageDropdown=document.querySelector(".language-dropdown");
+
+  languageButton.addEventListener("click",()=>{
+
+    const open=
+      languageButton.getAttribute("aria-expanded")==="true";
+
+    languageButton.setAttribute(
+      "aria-expanded",
+      String(!open)
+    );
+
+    languageDropdown.classList.toggle("open");
+
+  });
+
+  document.addEventListener("click",event=>{
+
+    if(!languageDropdown.contains(event.target)){
+
+      languageDropdown.classList.remove("open");
+
+      languageButton.setAttribute(
+        "aria-expanded",
+        "false"
+      );
+
+    }
+
+  });
+
+
+  /* MOBILE MENU */
+
+  const menuToggle=document.querySelector(".menu-toggle");
+  const nav=document.querySelector(".nav");
+
+  menuToggle.addEventListener("click",()=>{
+
+    const open=nav.classList.toggle("mobile-open");
+
+    if(open){
+
+      nav.style.display="flex";
+      nav.style.position="absolute";
+      nav.style.top="100%";
+      nav.style.left="0";
+      nav.style.right="0";
+      nav.style.flexDirection="column";
+      nav.style.alignItems="stretch";
+      nav.style.padding="20px 6%";
+      nav.style.gap="15px";
+      nav.style.background="#eee";
+      nav.style.borderBottom="1px solid #ccc";
+
+    }else{
+
+      nav.removeAttribute("style");
+
+    }
+
+  });
+
+
+  /* PAGE TRANSITION */
+
+  document.querySelectorAll('a[href="app.html"]').forEach(link=>{
+
+    link.addEventListener("click",event=>{
+
+      event.preventDefault();
+
+      document.body.classList.add("page-out");
+
+      setTimeout(()=>{
+        window.location.href="app.html";
+      },400);
+
+    });
+
+  });
+
+});
+</script>
+
 </body>
 </html>
+```
